@@ -1,7 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 import { fetchPosts } from '../actions/posts';
 import { PostsList } from './';
+import { NavBar } from './';
 
 class App extends React.Component {
   componentDidMount() {
@@ -13,6 +15,7 @@ class App extends React.Component {
     const { posts } = this.props;
     return (
     <div>
+      <NavBar />
       <PostsList posts={posts} />
     </div>
     );
@@ -24,4 +27,10 @@ function mapStoreToProps(state) {
     posts: state.posts,
   };
 }
+
+App.propTypes = {
+  posts: PropTypes.array.isRequired,
+};
+
+
 export default connect(mapStoreToProps)(App);
