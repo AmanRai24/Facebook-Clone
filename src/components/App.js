@@ -3,13 +3,9 @@ import {connect} from 'react-redux';
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { fetchPosts } from '../actions/posts';
-import { Home, NavBar, Page404 } from './';
-
-const LogIn = () => <div>LogIn</div>;
+import { Home, NavBar, Page404, LogIn, SignUp } from './';
 
 const LogOut = () => <div>LogOut</div>;
-
-const SignUp = () => <div>SignUp</div>;
 
 class App extends React.Component {
   componentDidMount() {
