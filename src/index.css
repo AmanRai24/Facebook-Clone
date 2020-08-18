@@ -410,6 +410,10 @@ nav .nav-links ul li:hover {
   cursor: pointer;
 }
 
+.field button:disabled {
+  cursor: not-allowed;
+}
+
 /* SETTINGS and USERPROFILE */
 .settings {
   display: inline-flex;
