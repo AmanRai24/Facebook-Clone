@@ -2,7 +2,7 @@ import {
     LOGIN_START,
     LOGIN_SUCCESS,
     LOGIN_FAILED,
-  } from '../action/actionTypes';
+  } from '../actions/actionTypes';
   
   const initialAuthState = {
     user: {},
