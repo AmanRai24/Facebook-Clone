@@ -7,6 +7,7 @@ import {
     SIGNUP_START,
     SIGNUP_SUCCESS,
     SIGNUP_FAILED,
+    CLEAR_AUTH_STATE,
   } from './actionTypes';
 
 import { APIUrls } from '../helpers/urls';
@@ -49,6 +50,7 @@ export function login(email, password) {
       console.log('login data', data);
       if (data.success) {
         //TODO-dispatch acction to save user
+        localStorage.setItem('token', data.data.token);
         dispatch(loginSuccess(data.data.user));
         return;
       }
@@ -114,5 +116,11 @@ export function signupFailed(error) {
   return {
     type: SIGNUP_FAILED,
     error,
+  };
+}
+
+export function clearAuthState() {
+  return {
+    type: CLEAR_AUTH_STATE,
   };
 }
