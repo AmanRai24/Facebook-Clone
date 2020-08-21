@@ -5,15 +5,24 @@ import { BrowserRouter as Router,
    Switch ,
    Redirect,
   } from 'react-router-dom';
+
 import PropTypes from 'prop-types';
 
 import { fetchPosts } from '../actions/posts';
-import { Home, NavBar, Page404, LogIn, SignUp } from './';
+import { 
+  Home, 
+  NavBar, 
+  Page404,
+  LogIn, 
+  SignUp,
+  Settings
+} from './';
+
 import * as jwtDecode from 'jwt-decode';
 import { authenticateUser } from '../actions/auth';
 
 //const LogOut = () => <div>LogOut</div>;
-const settings = () => <div>Setting</div>;
+//const settings = () => <div>Setting</div>;
 const PrivateRoute = (privateRoutProps) => {
   const { isLoggedin, path, component: Component } = privateRoutProps;
   return (
@@ -64,7 +73,7 @@ class App extends React.Component {
             <Route path="/signup" component={SignUp} />
             <PrivateRoute
               path="/settings"
-              component={settings}
+              component={Settings}
               isLoggedin={auth.isLoggedin}
             />
             <Route component={Page404} />
