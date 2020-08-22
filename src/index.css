@@ -325,7 +325,7 @@ nav .nav-links ul li:hover {
   margin-top: 20px;
   border: 1px solid #e0e0e0;
   border-radius: 4px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 .friends-list .header {
   border-bottom: 1px solid #e0e0e0;
