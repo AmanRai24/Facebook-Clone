@@ -1,4 +1,9 @@
-import { UPDATE_POSTS, ADD_POST, ADD_COMMENT} from './actionTypes';
+import {
+   UPDATE_POSTS, 
+   ADD_POST, 
+   ADD_COMMENT,
+   UPDATE_POST_LIKE,
+  } from './actionTypes';
 import { APIUrls } from '../helpers/urls';
 import { getAuthTokenFromLocalStorage, getFormBody } from '../helpers/utils';
 
@@ -56,7 +61,7 @@ export function addPost(post) {
 }
 
 // add comment to the post API
-export function createComment(comment, postId) {
+export function createComment(content, postId) {
   return (dispatch) => {
     const url = APIUrls.createComment();
 
@@ -66,7 +71,7 @@ export function createComment(comment, postId) {
         'Content-Type': 'application/x-www-form-urlencoded',
         Authorization: `Bearer ${getAuthTokenFromLocalStorage()}`,
       },
-      body: getFormBody({ comment, post_id: postId }),
+      body: getFormBody({ content, post_id: postId }),
     })
       .then((response) => response.json())
       .then((data) => {
@@ -85,5 +90,36 @@ export function addComment(comment, postId) {
     type: ADD_COMMENT,
     comment,
     postId,
+  };
+}
+
+//fectch API for toggle like on POST
+export function addLikeToStore(id, likeType, userId) {
+  return (dispatch) => {
+    const url = APIUrls.toggleLike(id, likeType);
+
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        Authorization: `Bearer ${getAuthTokenFromLocalStorage()}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('LIKE DATA', data);
+
+        if (data.success) {
+          dispatch(addPostLike(id, userId));
+        }
+      });
+  };
+}
+// Calling reducer to update post like status
+export function addPostLike(postId, userId) {
+  return {
+    type: UPDATE_POST_LIKE,
+    postId,
+    userId,
   };
 }
