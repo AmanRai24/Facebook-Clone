@@ -284,15 +284,18 @@ nav .nav-links ul li:hover {
   overflow: auto;
   /* display: none; */
 }
+
 .search-results ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
 }
+
 .search-results ul a {
   text-decoration: none;
   color: black;
 }
+
 .search-results-row {
   display: flex;
   align-items: center;

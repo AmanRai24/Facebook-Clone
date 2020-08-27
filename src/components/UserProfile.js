@@ -24,24 +24,38 @@ class UserProfile extends Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    // rename params to prevParams/currParams
+    const {
+      match: { params: prevParams },
+    } = prevProps;
+
+    const {
+      match: { params: currentParams },
+    } = this.props;
+
+    if (
+      prevProps && currentParams && prevParams.userId !== currentParams.userId
+    ) {
+      this.props.dispatch(fetchUserProfile(currentParams.userId));
+    }
+  }
+
   checkIfUserIsAFriend = () => {
     console.log('this.props(userProfile)', this.props);
     const { match, friends } = this.props;
     const userId = match.params.userId;
-
     const index = friends.map((friend) => friend.to_user._id).indexOf(userId);
 
     if (index !== -1) {
       return true;
     }
-
     return false;
   };
 
   handleAddFriendClick = async () => {
     const userId = this.props.match.params.userId;
     const url = APIUrls.addFriend(userId);
-
     const options = {
       method: 'POST',
       headers: {
@@ -71,7 +85,6 @@ class UserProfile extends Component {
   handleRemoveFriendClick = async () => {
     const { match } = this.props;
     const url = APIUrls.removeFriend(match.params.userId);
-
     const options = {
       method: 'POST',
       headers: {
@@ -105,7 +118,6 @@ class UserProfile extends Component {
     } = this.props;
     console.log('this.props', params);
     const user = profile.user;
-
     if (profile.inProgress) {
       return <h1>Loading!!!</h1>;
     }
