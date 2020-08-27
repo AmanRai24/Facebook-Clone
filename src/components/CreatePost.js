@@ -13,6 +13,10 @@ class CreatePost extends Component {
   //method to add post on click
   handleOnClick = () => {
     this.props.dispatch(createPost(this.state.content));
+    //creae post input
+    this.setState({
+      content: '',
+    });
   };
 
   //method to keep adding the content of post in state
