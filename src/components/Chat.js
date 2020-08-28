@@ -81,11 +81,11 @@ class Chat extends Component {
 
   handlecatbox = () => {
     var chat = this.state.showChat;
-    {
-        chat = chat ? false : true;
-    }
+    // {
+    //     chat = chat ? false : true;
+    // }
     this.setState({
-      showChat: chat,
+      showChat: !chat,
     });
   };
 

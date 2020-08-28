@@ -21,10 +21,10 @@ class Comment extends Component {
     }
 
     if (currDate.toString() === date && currMonth.toString() === month) {
-      var finalDate = 'Today' + ' ' + 'at' + ' ' + hour + ':' + minute;
+      let finalDate = 'Today at' + ' ' + hour + ':' + minute;
       return finalDate;
     } else {
-      var months = new Array(
+      var months = [
         'January',
         'February',
         'March',
@@ -36,9 +36,9 @@ class Comment extends Component {
         'September',
         'October',
         'November',
-        'December'
-      );
-      var finalDate =months[month - 1] + ' ' + date + ' ' + 'at' + ' ' + hour + ':' + minute;
+        'December',
+      ];
+      let finalDate =months[month - 1] + ' ' + date + ' at ' + hour + ':' + minute;
       return finalDate;
     }
   };
@@ -52,13 +52,15 @@ class Comment extends Component {
           <span className="post-comment-time">
             {this.handleSetDate(comment.createdAt)}
           </span>
-          <button className="comment-like no-btn">
-            <img
-              src="https://image.flaticon.com/icons/svg/1076/1076984.svg"
-              alt="like comment"
-            />
-            <span className="post-comment-likes">{comment.likes.length}</span>
-          </button>
+          <span className="post-comment-likes">
+            <button className="comment-like no-btn">
+              <img
+                src="https://image.flaticon.com/icons/svg/1076/1076984.svg"
+                alt="like comment"
+              />
+              <span>{comment.likes.length}</span>
+            </button>
+          </span>
         </div>
         <div className="post-comment-content">{comment.content}</div>
       </div>
