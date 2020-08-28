@@ -1,7 +1,16 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addLikeToStore } from '../actions/posts';
 
 class Comment extends Component {
-  // display date
+  handleCommentLike = () => {
+    const { comment, user } = this.props;
+    this.props.dispatch(
+      addLikeToStore(comment._id, 'Comment', user._id, comment.post)
+    );
+  };
+
+  // comment display date
   handleSetDate = (commentDate) => {
     // current date
     var today = new Date();
@@ -44,7 +53,9 @@ class Comment extends Component {
   };
 
   render() {
+    const { user } = this.props;
     const { comment } = this.props;
+    const isCommentLikedByUser = comment.likes.includes(user._id);
     return (
       <div className="post-comment-item">
         <div className="post-comment-header">
@@ -53,11 +64,21 @@ class Comment extends Component {
             {this.handleSetDate(comment.createdAt)}
           </span>
           <span className="post-comment-likes">
-            <button className="comment-like no-btn">
-              <img
-                src="https://image.flaticon.com/icons/svg/1076/1076984.svg"
-                alt="like comment"
-              />
+          <button
+              className="comment-like no-btn"
+              onClick={this.handleCommentLike}
+            >
+              {isCommentLikedByUser ? (
+                <img
+                  src="https://image.flaticon.com/icons/svg/1076/1076984.svg"
+                  alt="like post"
+                />
+              ) : (
+                <img
+                  src="https://image.flaticon.com/icons/svg/1077/1077035.svg"
+                  alt="likes-icon"
+                />
+              )}
               <span>{comment.likes.length}</span>
             </button>
           </span>
@@ -68,4 +89,9 @@ class Comment extends Component {
   }
 }
 
-export default Comment;
+function mapStateToProps({ auth }) {
+  return {
+    user: auth.user,
+  };
+}
+export default connect(mapStateToProps)(Comment);
