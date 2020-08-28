@@ -124,7 +124,7 @@ class Chat extends Component {
             value={typedMessage}
             onChange={this.handleInputChange}
           />
-          <button onClick={this.handleSubmit}>Submit</button>
+          <button onClick={this.handleSubmit}>Send</button>
         </div>
       </div>
       ) : (

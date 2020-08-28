@@ -28,9 +28,11 @@ class CreatePost extends Component {
 
   //render start
   render() {
+    const { User } = this.props;
     return (
       <div className="create-post">
         <textarea
+          placeholder={`What's on your mind, ${User}?`}
           className="add-post"
           value={this.state.content}
           onChange={this.handleChange}
@@ -46,4 +48,10 @@ class CreatePost extends Component {
   }
 }
 
-export default connect()(CreatePost);
+function mapStoreToProps({ auth }) {
+  return {
+    User: auth.user.name,
+  };
+}
+
+export default connect(mapStoreToProps)(CreatePost);
