@@ -11,6 +11,7 @@ class Post extends Component {
 
     this.state = {
       comment: '',
+      showComments: false,
     };
   }
 
@@ -43,10 +44,20 @@ class Post extends Component {
     this.props.dispatch(addLikeToStore(post._id, 'Post', user._id));
   };
 
+  hadleShowComment = () => {
+    var comment = this.state.showComments;
+    {
+      comment = comment ? false : true;
+    }
+    this.setState({
+      showComments: comment,
+    });
+  };
+
 
   render() {
     const { post, user} = this.props;
-    const { comment } = this.state;
+    const { comment, showComments} = this.state;
 
     const isPostLikedByUser = post.likes.includes(user._id);
 
@@ -84,7 +95,7 @@ class Post extends Component {
               <span>{post.likes.length}</span>
             </button>
 
-            <div className="post-comments-icon">
+            <div className="post-comments-icon" onClick={this.hadleShowComment}>
               <img
                 src="https://image.flaticon.com/icons/svg/1380/1380338.svg"
                 alt="comments-icon"
@@ -94,18 +105,24 @@ class Post extends Component {
           </div>
           <div className="post-comment-box">
             <input
-              placeholder="Start typing a comment"
+              placeholder="Start typing a comment..."
               onChange={this.handleOnCommentChange}
               onKeyPress={this.handleAddComment}
               value={comment}
             />
           </div>
 
-          <div className="post-comments-list">
-            {post.comments.map((comment) => (
-              <Comment comment={comment} key={comment._id} postId={post._id} />
-            ))}
-          </div>
+          {showComments && (
+            <div className="post-comments-list">
+              {post.comments.map((comment) => (
+                <Comment
+                  comment={comment}
+                  key={comment._id}
+                  postId={post._id}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     );
