@@ -196,7 +196,7 @@ code {
 /* NAVBAR */
 .nav {
   display: flex;
-  background: #6200ee;
+  background: rgb(32, 129, 219);
   padding: 10px 20px;
   align-items: center;
   justify-content: space-between;
