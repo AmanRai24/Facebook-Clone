@@ -73,7 +73,7 @@ class Post extends Component {
       date = date.slice(1, 2);
     }
     if (currDate.toString() === date && currMonth.toString() === month) {
-      var finalDate = 'Today' + ' ' + 'at' + ' ' + hour + ':' + minute;
+      var finalDate = 'Today at'+ hour + ':' + minute;
       return finalDate;
     } else {
       var months = new Array(
@@ -91,7 +91,7 @@ class Post extends Component {
         'December'
       );
       var finalDate =
-        months[month - 1] + ' ' + date + ' ' + 'at' + ' ' + hour + ':' + minute;
+        months[month - 1] + ' ' + date +' '+ 'at' + ' '+ hour + ':' + minute;
       return finalDate;
     }
   };
