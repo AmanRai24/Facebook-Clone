@@ -11,7 +11,11 @@
 * ADD & REMOVE friends.
 * Chatbox
 
-# Folder Structure
+## Screenshot
+
+![Homepage](/Image/Homepage.JPG)
+
+## Folder Structure
 
     ├── public
         ├── index.html
