@@ -13,8 +13,6 @@
 
 # Folder Structure
 
-.
-
     ├── public
         ├── index.html
     ├── src
@@ -36,4 +34,11 @@
     ├── package-lock.json
     ├── .gitignore
 
-.
+## Getting Started
+
+1. Clone the project or download the ZIP folder.
+2. Go to folder.
+3. Run following command `npm install` to install all require libraries.
+4. Run command: `npm start`
+5. Go to https://localhost/3000 to view it in the browser.
+6. Happy Learning 
