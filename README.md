@@ -2,7 +2,7 @@
 *This is a clone of facebook app made using React.*
 
 ## Functionality
-* SignUp Page - using name,email and password.
+* SignUp Page - using name,e-mail and password.
 * Login Page - using email and password.
 * Homepage
 * Create Posts and Comments.
